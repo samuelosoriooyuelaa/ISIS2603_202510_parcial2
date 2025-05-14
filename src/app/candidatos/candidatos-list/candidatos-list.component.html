@@ -1,26 +1,28 @@
-<div class="container">
-    <h1 class="mt-4">Candidatos a Papa - 2025</h1>
-
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr style="--bs-table-bg: #C41E3A; --bs-table-color: white;">
-                <th scope="col">Nombre</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Pais Origen</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Vertiente Religiosa</th>
-            </tr>
+<div class="container mt-5">
+    <div *ngIf="!selectedCandidato">
+      <h2 class="mb-4">Candidatos a Papa</h2>
+      <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Pais de origen</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Vertiente Religiosa</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let candidato of candidatos" (click)="seleccionarCandidato(candidato)">
-                <td>{{ candidato.nombre }}</td>
-                <td><img [src]="candidato.foto" alt="{{ candidato.nombre }}" style="width: 50px; height: auto;"></td>
-                <td>{{ candidato.pais_origen }}</td>
-                <td>{{ candidato.edad }} años</td>
-                <td>{{ candidato.vertiente_religiosa }}</td>
-            </tr>
-        </tbody>
-    </table>
+          <tr *ngFor="let can of candidatos" 
+              (click)="showCandidatoDetails(can)"
+              style="cursor: pointer;">
+            <td>{{ can.id}}</td>
+            <td>{{ can.nombre }}</td>
+            <td>{{ can.foto }}</td>
+            <td>{{ can.edad }}</td>
+            <td>{{ can.vertiente_religiosa}}</td>
 
-    <app-candidatos-detail *ngIf="candidatoSeleccionado" [candidato]="candidatoSeleccionado"></app-candidatos-detail>
-</div>
+          </tr>
+        </tbody>
+      </table>
+    </div>

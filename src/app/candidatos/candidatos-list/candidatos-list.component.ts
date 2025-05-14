@@ -1,4 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { Candidato } from '../model/candidato';
+import { CandidatoService } from '../service/candidato.service';
 
 @Component({
   selector: 'app-candidatos-list',
@@ -7,6 +9,22 @@ import { Component, OnInit, Output } from '@angular/core';
   styleUrl: './candidatos-list.component.css'
 })
 export class CandidatosListComponent implements OnInit {
+  candidatos: Candidato[] = [];
+  selectedCandidato: Candidato | null = null;
+  constructor(private candidatoService: CandidatoService){}
+
+  ngOnInit(): void {
+    this.candidatoService.getCandidatos().subscribe({
+      next: (data) => {
+        this.candidatos = data;
+      }
+    });
+
+    
+
+
+
+  /*
   candidatos = [
     {
       id: 1,
@@ -49,19 +67,15 @@ export class CandidatosListComponent implements OnInit {
       foto: "https://upload.wikimedia.org/wikipedia/commons/5/57/Louis_Rapha%C3%ABl_I_Sako_November_2015.jpg"
     }
   ];
+  /** */
 
-  @Output() candidatoSeleccionado = null
-  seleccionado = false;
+  
+}
+showCandidatoDetails(candidate: Candidato): void {
+  this.selectedCandidato = candidate;
+}
 
-  seleccionarCandidato(candidato: any) {
-    this.candidatoSeleccionado = candidato;
-    console.log(this.candidatoSeleccionado);
-    this.seleccionado = true;
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
-      
-  }
+returnToList(): void {
+  this.selectedCandidato = null;
+}
 }

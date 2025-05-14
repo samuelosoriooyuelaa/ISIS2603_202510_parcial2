@@ -1,14 +1,26 @@
-<div>
-    <h3>{{candidato.nombre}}</h3>
-    <div>
-        <div style="width: 50%; display: inline-block;">
-            <img [src]="candidato.foto" alt="{{ candidato.nombre }}" style="width: 80%; ">
-        </div>
-        
-        <div style="width: 50%; display: inline-block;">
-            <p><strong>Pais de Origen: </strong> {{candidato.pais_origen}} </p>
-            <p><strong>Vertiente Religiosa: </strong> {{candidato.vertiente_religiosa}} </p>
-            <p><strong>Edad: </strong> {{candidato.edad}} </p>
-        </div>
+<div class="card shadow-lg mt-4">
+    <div class="card-header bg-primary text-white">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3>{{ candidato.nombre }}</h3>
+        <button (click)="back.emit()" class="btn btn-sm btn-light">
+          &times; Cerrar
+        </button>
+      </div>
+      <div class="mt-2">
+        <span class="badge bg-light text-dark">
+          {{ candidato.nombre }}
+        </span>
+      </div>
     </div>
-</div>
+    <div class="card-body">
+      <h5 class="card-title">Detalle Candidato</h5>
+      <p class="card-text">{{ candidato.vertiente_religiosa }}</p>
+    </div>
+    <div class="card-foot</div>er text-end">
+      <button (click)="back.emit()" class="btn btn-outline-primary">
+        Volver a la lista
+      </button>
+    </div>
+  </div>
+
+

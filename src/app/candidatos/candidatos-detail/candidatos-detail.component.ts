@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Candidato } from '../model/candidato';
 
 @Component({
   selector: 'app-candidatos-detail',
@@ -6,9 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './candidatos-detail.component.html',
   styleUrl: './candidatos-detail.component.css'
 })
-export class CandidatosDetailComponent implements OnInit {
-  @Input() candidato: any;
-
-  constructor() {}
-  ngOnInit() {}
+export class CandidatosDetailComponent {
+  @Input() candidato!: Candidato;
+  @Output() back = new EventEmitter<void>();
 }
